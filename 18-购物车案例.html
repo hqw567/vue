@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <table border='1' v-if="isShow">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>书籍名称</th>
+                    <th>出版日期</th>
+                    <th>价格</th>
+                    <th>购买数量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(b,index) in books">
+                    <td>{{b.id}}</td>
+                    <td>{{b.name}}</td>
+                    <td>{{b.data}}</td>
+                    <td>{{b.price | showPrice}}</td>
+                    <td>
+                        <button @click="deClick(index)" :disabled="b.count < 2">-</button> {{b.count}} <button
+                            @click="adClick(index)">+</button>
+                    </td>
+                    <td><button @click="removeBtn(index)">移除</button></td>
+
+                </tr>
+
+            </tbody>
+            <span>总价格：{{ getSumPrice | showPrice}}</span>
+        </table>
+        <h1 v-else>请加入购物车再来吧！</h1>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {
+                        id: 1,
+                        name: '《算法导论》',
+                        data: '2006-9',
+                        price: 85,
+                        count: 1
+                    }, {
+                        id: 2,
+                        name: '《计算机的使用》',
+                        data: '2006-2',
+                        price: 82,
+                        count: 1
+                    }, {
+                        id: 3,
+                        name: '《医生》',
+                        data: '2001-9',
+                        price: 44,
+                        count: 1
+                    },
+                ],
+                isShow: true
+            },
+            methods: {
+                // getFinalPrice(price) {
+                //     return '￥' + price.toFixed(2)
+                // }
+                deClick(index) {
+                    this.books[index].count--
+                    // alert( this.books[index].count)
+                    if (this.books[index].count <= 1) {
+                        this.books[index].count = 1
+                    }
+                },
+                adClick(index) {
+                    this.books[index].count++
+                },
+                removeBtn(index) {
+                    this.books.splice(index, 1)
+                    // console.log(this.books.length);
+                    if (this.books.length == 0) {
+                        this.isShow = false
+                    }
+                }
+            },
+            computed: {
+                getSumPrice() {
+                    let sum = 0
+                    // for (let i = 0; i < this.books.length; i++) {
+                    //     sum += this.books[i].count * this.books[i].price
+                    // }
+                    // return sum
+
+                    // for (let i in this.books) {
+                    //     sum += this.books[i].count * this.books[i].price
+                    // }
+                    // return sum
+
+                    for (let i of this.books) {
+                        sum += i.count * i.price
+                    }
+                    return sum
+
+                },
+
+            },
+            filters: {   //filters 过滤器
+                showPrice(price) {
+                    return '￥' + price.toFixed(2)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="vue.js"></script>
+
+    <div id="app">
+        <p v-if="isName()">{{name}}</p>
+        <p v-else>{{name1}}</p>
+
+        <h1>{{result}}</h1>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                name: 'Herway',
+                name1: '何琪未',
+                score: 59
+            },
+            methods: {
+                isName() {
+                    return false
+                }
+            },
+            computed: {
+                result() {
+                    let show = '';
+                    if (this.score >= 90) {
+                        show = '优秀'
+                    } else if (this.score >= 70) {
+                        show = '良好'
+                    } else if (this.score >= 60) {
+                        show = '及格'
+                    } else {
+                        show = '不及格'
+                    }
+                    return show
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

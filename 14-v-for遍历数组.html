@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <h1 v-for="(m,index) in moves">{{m}}   我是第{{index+1}}部</h1>
+    </div>
+
+    <script src="vue.js"></script>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                moves: ['我是传奇', 'Vue', '流浪地球']
+            }
+        })
+    </script>
+</body>
+
+</html>

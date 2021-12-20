@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>
+
+
+        </h1>
+    </div>
+
+    <script src="vue.js"></script>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                sums: [1, 66, 33, 66, 23, 10]
+            }
+        })
+
+        let sums = [1, 66, 33, 66, 23, 11]
+
+        console.log(sums.sort());  //sort排序
+
+        // let sums1 = sums.filter(function (n) {   //filter 过滤
+        //     // let num = 50
+        //     // if (n < num) {
+        //     //     return n
+        //     // }
+
+        //     return n < 30
+        // })
+
+        let sums1 = sums.filter(n => n < 20)  //es6 箭头函数写法
+
+        console.log(sums1);
+
+        // let sums2 = sums.map(function (n) {  //map 对数组进行操作如 数组的数*2 或者/2等
+        //     return n * 2
+        // })
+
+        let sums2 = sums.map(n => n * 3)
+        console.log(sums2);
+
+        // let sums3 = sums.reduce(function (pre, n) {  //reduce 汇总
+        //     return pre += n
+        // }, 0)
+
+        let sums3 = sums.reduce((pre, n) => pre += n)
+        console.log(sums3);
+
+        let sum = sums.filter(n => n < 50).map(n => n * 2).reduce((pre, n) => pre += n)
+        console.log(sum);
+    </script>
+</body>
+
+</html>

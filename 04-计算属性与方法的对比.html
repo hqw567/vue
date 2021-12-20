@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./vue.js"></script>
+    <div id="app">
+
+        <h3>{{firstName}} {{lastName}}</h3>
+
+        <!-- methods属性在页面上会多次调用，性能不好，在计算上尽量减少使用这种方法 -->
+        <h3>{{getFullName()}}</h3>
+        <h3>{{getFullName()}}</h3>
+        <h3>{{getFullName()}}</h3>
+        <h3>{{getFullName()}}</h3>
+
+        <!-- computed属性会有缓存，只要调用的值不发生改变，不管页面调用几次都，只会只有一次 -->
+        <h3>{{fullName}}</h3>
+        <h3>{{fullName}}</h3>
+        <h3>{{fullName}}</h3>
+        <h3>{{fullName}}</h3>
+        <h3>{{fullName}}</h3>
+
+        <!-- 总结计算属性比方法属性性能高 -->
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Her',
+                lastName: 'way'
+            },
+            methods: {
+                getFullName() {
+                    console.log('getFullName');
+                    return this.firstName + ' ' + this.lastName
+                }
+            },
+            computed: {
+                fullName: function () {
+                    console.log('fullName');
+                    return this.firstName + ' ' + this.lastName
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

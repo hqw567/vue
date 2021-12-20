@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="vue.js"></script>
+
+    <div id="app">
+        <h3>{{message}}</h3>
+        <h3 v-once>{{message}} 加v-once改数据不改变页面</h3>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '何琪未'
+            }
+        })
+    </script>
+</body>
+
+</html>

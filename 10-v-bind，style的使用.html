@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="vue.js"></script>
+    <style>
+        .red {
+            color: red;
+            width: 80px;
+        }
+    </style>
+    <div id="app">
+        <h3 :class="finalClass"
+            :style="{ color: finalColor, fontSize: finalSize + 'px', backgroundColor:finalbgColor }">
+            {{message}}</h3>
+
+        <h3 :class="styles" :style="getStyles()"> {{message}}</h3>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Herway',
+                finalClass: 'red',
+                finalColor: '#fff',
+                finalSize: 100,
+                finalbgColor: '#333'
+            },
+            methods: {
+                getStyles: function () {
+                    return { color: this.finalColor, fontSize: this.finalSize + 'px', backgroundColor: this.finalbgColor }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
